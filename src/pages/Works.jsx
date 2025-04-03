@@ -83,8 +83,12 @@ const Works = () => {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
-          gap: 3,
+          gridTemplateColumns: {
+            xs: "1fr",
+            sm: "1fr 1fr",
+            md: "1fr 1fr 1fr",
+          },
+          gap: { xs: 2, sm: 3 },
           justifyContent: "center",
           alignItems: "center",
           maxWidth: 1000,
@@ -95,7 +99,7 @@ const Works = () => {
           <Card
             key={index}
             sx={{
-              width: 300,
+              width: { xs: "90%", sm: 250, md: 300 },
               textAlign: "center",
               p: 2,
               boxShadow: 5,
@@ -104,11 +108,16 @@ const Works = () => {
                 transform: "scale(1.05)",
                 boxShadow: 8,
               },
+              mx: "auto",
             }}
           >
             <CardContent>
               {work.icon}
-              <Typography variant="h6" fontWeight="bold" sx={{ mt: 1 }}>
+              <Typography
+                variant="h6"
+                fontWeight="bold"
+                sx={{ mt: 1, fontSize: { xs: "1rem", sm: "1.2rem" } }}
+              >
                 {work.title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -121,6 +130,7 @@ const Works = () => {
                   mt: 2,
                   backgroundColor: "#007BFF",
                   color: "white",
+                  fontSize: { xs: "0.8rem", sm: "1rem" },
                   "&:hover": { backgroundColor: "#0056b3" },
                 }}
                 onClick={() => handleOpen(work)}
@@ -149,9 +159,9 @@ const Works = () => {
               transform: "translate(-50%, -50%)",
               bgcolor: "white",
               boxShadow: 24,
-              p: 4,
+              p: { xs: 3, sm: 4 },
               borderRadius: 2,
-              width: 400,
+              width: { xs: "90%", sm: 400 },
               maxWidth: "90vw",
               textAlign: "center",
               backdropFilter: "blur(8px)",
@@ -171,15 +181,32 @@ const Works = () => {
             {selectedWork && (
               <>
                 {selectedWork.icon}
-                <Typography variant="h5" fontWeight="bold" mt={1}>
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  mt={1}
+                  sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }}
+                >
                   {selectedWork.title}
                 </Typography>
-                <Typography variant="body1" color="text.secondary" mt={1}>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  mt={1}
+                  sx={{ fontSize: { xs: "0.9rem", sm: "1rem" } }}
+                >
                   {selectedWork.description}
                 </Typography>
                 <Box sx={{ textAlign: "left", mt: 2 }}>
                   {selectedWork.details.map((item, i) => (
-                    <Typography key={i} variant="body2" sx={{ mb: 1 }}>
+                    <Typography
+                      key={i}
+                      variant="body2"
+                      sx={{
+                        mb: 1,
+                        fontSize: { xs: "0.8rem", sm: "0.9rem" },
+                      }}
+                    >
                       • {item}
                     </Typography>
                   ))}
