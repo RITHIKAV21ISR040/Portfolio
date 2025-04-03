@@ -120,7 +120,7 @@ const Footer = () => {
               <GitHubIcon />
             </IconButton>
             <IconButton
-              href="https://www.instagram.com/rithi_sam/"
+              href="https://www.instagram.com/rithi_sam_/"
               target="_blank" // Opens in a new tab
               rel="noopener noreferrer" // Security best practice
               sx={{ color: "#bbb" }}
