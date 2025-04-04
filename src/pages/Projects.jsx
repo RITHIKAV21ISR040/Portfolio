@@ -6,9 +6,13 @@ import {
   Typography,
   CardMedia,
   useMediaQuery,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 import flower from "../assets/flower-shop.png";
 import jewellery from "../assets/jewel.png";
@@ -18,24 +22,49 @@ import portfolio from "../assets/portfolio.png";
 import ai from "../assets/ai-chatbot.png";
 
 const projects = [
-  { title: "Flower Shop", image: flower, path: "/flower-shop" },
-  { title: "Jewellery Store", image: jewellery, path: "/jewellery-store" },
-  { title: "Kongu-E-com", image: ecommerce, path: "/kongu-ecom" },
-  { title: "Event Management", image: event, path: "/event-management" },
-  { title: "Portfolio Website", image: portfolio, path: "/portfolio" },
-  { title: "AI Chatbot", image: ai, path: "/ai-chatbot" },
+  {
+    title: "Flower Shop",
+    image: flower,
+    description: "An online flower shop with a variety of beautiful flowers.",
+  },
+  {
+    title: "Jewellery Store",
+    image: jewellery,
+    description: "A luxurious jewelry store with elegant designs.",
+  },
+  {
+    title: "Kongu-E-com",
+    image: ecommerce,
+    description: "An e-commerce platform for shopping various products.",
+  },
+  {
+    title: "Event Management",
+    image: event,
+    description: "A professional event management system.",
+  },
+  {
+    title: "Portfolio Website",
+    image: portfolio,
+    description: "A personal portfolio showcasing my work.",
+  },
+  {
+    title: "AI Chatbot",
+    image: ai,
+    description: "An AI chatbot for customer support automation.",
+  },
 ];
 
 const Cube = () => {
-  const navigate = useNavigate();
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isRotating, setIsRotating] = useState(true);
   const [isSpread, setIsSpread] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   // Responsive breakpoints
   const isMobile = useMediaQuery("(max-width: 600px)");
   const isTablet = useMediaQuery("(max-width: 960px)");
 
+  // Rotate cube when it's not spread
   useEffect(() => {
     if (!isRotating || isSpread) return;
     const interval = setInterval(() => {
@@ -47,17 +76,19 @@ const Cube = () => {
     return () => clearInterval(interval);
   }, [isRotating, isSpread]);
 
-  const handleFaceClick = (path) => {
+  // Click handler for a card
+  const handleFaceClick = (project) => {
     if (isSpread) {
-      navigate(path);
+      setSelectedProject(project); // Open popup with project details
     } else {
       setIsRotating(false);
       setIsSpread(true);
-      setTimeout(() => {
-        setIsSpread(false);
-        setIsRotating(true);
-      }, 4000);
     }
+  };
+
+  // Close the popup
+  const handleClose = () => {
+    setSelectedProject(null);
   };
 
   return (
@@ -67,21 +98,18 @@ const Cube = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "start",
-        minHeight: isSpread ? "auto" : "100vh", // Adjust height dynamically
+        minHeight: isSpread ? "auto" : "100vh",
         backgroundColor: "#fce6f1",
         padding: isMobile ? "20px" : "40px",
         overflow: "hidden",
       }}
     >
-      {/* Title with better spacing */}
+      {/* Title */}
       <Typography
         variant={isMobile ? "h5" : "h4"}
         fontWeight="bold"
         textAlign="center"
-        sx={{
-          marginBottom: isMobile ? "30px" : "50px", // Increased space
-          color: "#333",
-        }}
+        sx={{ marginBottom: isMobile ? "30px" : "50px", color: "#333" }}
       >
         Projects
       </Typography>
@@ -118,7 +146,7 @@ const Cube = () => {
               : "repeat(2, 1fr)"
             : "none",
           gap: isSpread ? (isMobile ? "8px" : "20px") : "0",
-          marginTop: isSpread ? "0px" : "110px", // Increased space between cube and title
+          marginTop: isSpread ? "0px" : "110px",
         }}
         animate={{
           rotateX: isSpread ? 0 : rotation.x,
@@ -129,7 +157,7 @@ const Cube = () => {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            onClick={() => handleFaceClick(project.path)}
+            onClick={() => handleFaceClick(project)}
             style={{
               position: isSpread ? "relative" : "absolute",
               width: isSpread ? (isMobile ? "45vw" : "250px") : "250px",
@@ -144,14 +172,7 @@ const Cube = () => {
               transform: isSpread ? "none" : getFaceTransform(index),
             }}
           >
-            <Card
-              sx={{
-                width: "100%",
-                height: "100%",
-                borderRadius: "15px",
-                bgcolor: "white",
-              }}
-            >
+            <Card sx={{ width: "100%", height: "100%", borderRadius: "15px" }}>
               <CardMedia
                 component="img"
                 height="70%"
@@ -173,28 +194,56 @@ const Cube = () => {
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Popup Dialog */}
+      <Dialog open={Boolean(selectedProject)} onClose={handleClose}>
+        {selectedProject && (
+          <>
+            <DialogTitle sx={{ fontWeight: "bold" }}>
+              {selectedProject.title}
+            </DialogTitle>
+            <DialogContent>
+              <CardMedia
+                component="img"
+                height="200"
+                image={selectedProject.image}
+                alt={selectedProject.title}
+                sx={{ borderRadius: "10px", objectFit: "cover" }}
+              />
+              <Typography
+                sx={{
+                  marginTop: "10px",
+                  fontSize: "16px",
+                  fontWeight: "500",
+                  color: "#444",
+                }}
+              >
+                {selectedProject.description}
+              </Typography>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Close
+              </Button>
+            </DialogActions>
+          </>
+        )}
+      </Dialog>
     </Box>
   );
 };
 
+// Cube face transformations
 const getFaceTransform = (index) => {
   const size = 125;
-  switch (index) {
-    case 0:
-      return `translateZ(${size}px)`;
-    case 1:
-      return `rotateY(90deg) translateZ(${size}px)`;
-    case 2:
-      return `rotateY(180deg) translateZ(${size}px)`;
-    case 3:
-      return `rotateY(-90deg) translateZ(${size}px)`;
-    case 4:
-      return `rotateX(90deg) translateZ(${size}px)`;
-    case 5:
-      return `rotateX(-90deg) translateZ(${size}px)`;
-    default:
-      return "none";
-  }
+  return [
+    `translateZ(${size}px)`,
+    `rotateY(90deg) translateZ(${size}px)`,
+    `rotateY(180deg) translateZ(${size}px)`,
+    `rotateY(-90deg) translateZ(${size}px)`,
+    `rotateX(90deg) translateZ(${size}px)`,
+    `rotateX(-90deg) translateZ(${size}px)`,
+  ][index];
 };
 
 export default Cube;
