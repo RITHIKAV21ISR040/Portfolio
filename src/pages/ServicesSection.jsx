@@ -45,7 +45,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <Box
+      <Box
   sx={{
     position: "relative",
     py: 12,
@@ -55,6 +55,7 @@ const ServicesSection = () => {
     overflow: "hidden",
   }}
 >
+
       {/* Light Blur Background */}
       <Box
         sx={{
