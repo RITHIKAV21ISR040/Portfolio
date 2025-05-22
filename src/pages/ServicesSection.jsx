@@ -46,15 +46,15 @@ const services = [
 const ServicesSection = () => {
   return (
     <Box
-      sx={{
-        position: "relative",
-        py: 12,
-        background: "linear-gradient(135deg, #2B1055, #6A0572, #BA68C8)",
-        color: "#fff",
-        textAlign: "center",
-        overflow: "hidden",
-      }}
-    >
+  sx={{
+    position: "relative",
+    py: 12,
+    background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)", // Updated background gradient
+    color: "#fff",
+    textAlign: "center",
+    overflow: "hidden",
+  }}
+>
       {/* Light Blur Background */}
       <Box
         sx={{
