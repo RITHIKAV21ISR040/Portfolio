@@ -14,17 +14,21 @@ import { SportsSoccer, Brush, Article, Close } from "@mui/icons-material";
 const worksData = [
   {
     title: "Paper Presentation",
-    icon: <Article fontSize="large" sx={{ color: "#007BFF" }} />,
+    icon: <Article fontSize="large" sx={{ color: "white" }} />,
+    iconBg: "#007BFF",
     description: "Presented research papers in various conferences.",
     details: [
       "Paper on Artificial Intelligence in Kongu Engineering College",
+      "Paper on 5G Technology in K.G.College of Arts And Science",
+      "Paper on Block Chain in JCT College Of Engineering And Technology",
       "IOT In Agriculture in Sri Ramakrishna Engineering College",
       "Smart Home in V.S.B Engineering College",
     ],
   },
   {
     title: "Sports",
-    icon: <SportsSoccer fontSize="large" sx={{ color: "#28A745" }} />,
+    icon: <SportsSoccer fontSize="large" sx={{ color: "white" }} />,
+    iconBg: "#28A745",
     description: "Actively participated in various sports competitions.",
     details: [
       "Winner of College Level in Badminton and Ball Batminton",
@@ -34,7 +38,8 @@ const worksData = [
   },
   {
     title: "Paintings",
-    icon: <Brush fontSize="large" sx={{ color: "#FFC107" }} />,
+    icon: <Brush fontSize="large" sx={{ color: "white" }} />,
+    iconBg: "#FFC107",
     description: "Created numerous artworks and participated in exhibitions.",
     details: [
       "First Prize in State-Level Painting Competition",
@@ -64,22 +69,20 @@ const Works = () => {
       sx={{
         textAlign: "center",
         p: { xs: 3, md: 5 },
-        background: "linear-gradient(to right, #eef2f3, #8e9eab)",
-        minHeight: "80vh",
+        backgroundColor: "#e0f7fa", // Light teal background
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
       }}
     >
-      {/* Title Section */}
-      <Typography variant="h4" fontWeight="bold" color="black">
-        Works
+      <Typography variant="h4" fontWeight="bold" color="#004d61" mb={1}>
+        My Works
       </Typography>
-      <Typography variant="subtitle1" color="gray" mb={3}>
-        What I have done
+      <Typography variant="subtitle1" color="text.secondary" mb={3}>
+        Explore my achievements
       </Typography>
 
-      {/* Cards Container */}
       <Box
         sx={{
           display: "grid",
@@ -88,10 +91,8 @@ const Works = () => {
             sm: "1fr 1fr",
             md: "1fr 1fr 1fr",
           },
-          gap: { xs: 2, sm: 3 },
-          justifyContent: "center",
-          alignItems: "center",
-          maxWidth: 1000,
+          gap: { xs: 3, sm: 4 },
+          maxWidth: 1200,
           mx: "auto",
         }}
       >
@@ -99,41 +100,52 @@ const Works = () => {
           <Card
             key={index}
             sx={{
-              width: { xs: "90%", sm: 250, md: 300 },
               textAlign: "center",
+              boxShadow: 4,
+              borderRadius: 3,
               p: 2,
-              boxShadow: 5,
-              transition: "transform 0.3s ease-in-out, box-shadow 0.3s",
+              backgroundColor: "#ffffff",
+              transition: "transform 0.3s, box-shadow 0.3s",
               "&:hover": {
-                transform: "scale(1.05)",
-                boxShadow: 8,
+                transform: "translateY(-5px)",
+                boxShadow: 6,
               },
-              mx: "auto",
             }}
           >
-            <CardContent>
+            <Box
+              sx={{
+                width: 60,
+                height: 60,
+                mx: "auto",
+                mb: 1.5,
+                borderRadius: "50%",
+                backgroundColor: work.iconBg,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               {work.icon}
-              <Typography
-                variant="h6"
-                fontWeight="bold"
-                sx={{ mt: 1, fontSize: { xs: "1rem", sm: "1.2rem" } }}
-              >
+            </Box>
+
+            <CardContent>
+              <Typography variant="h6" fontWeight="bold" color="#333">
                 {work.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" mt={1}>
                 {work.description}
               </Typography>
-
               <Button
-                size="small"
+                variant="contained"
+                onClick={() => handleOpen(work)}
                 sx={{
                   mt: 2,
-                  backgroundColor: "#007BFF",
-                  color: "white",
+                  backgroundColor: "#004d61",
                   fontSize: { xs: "0.8rem", sm: "1rem" },
-                  "&:hover": { backgroundColor: "#0056b3" },
+                  "&:hover": {
+                    backgroundColor: "#003745",
+                  },
                 }}
-                onClick={() => handleOpen(work)}
               >
                 View More
               </Button>
@@ -142,7 +154,7 @@ const Works = () => {
         ))}
       </Box>
 
-      {/* Popup Modal */}
+      {/* Modal */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -157,56 +169,58 @@ const Works = () => {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              bgcolor: "white",
+              bgcolor: "#f9f9f9",
               boxShadow: 24,
               p: { xs: 3, sm: 4 },
-              borderRadius: 2,
-              width: { xs: "90%", sm: 400 },
-              maxWidth: "90vw",
+              borderRadius: 3,
+              width: { xs: "85%", sm: 500 },
+              maxWidth: "95vw",
               textAlign: "center",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(0,0,0,0.2)",
+              border: "1px solid rgba(0,0,0,0.1)",
             }}
           >
             <Close
               onClick={handleClose}
               sx={{
                 position: "absolute",
-                top: 10,
-                right: 10,
+                top: 12,
+                right: 12,
                 cursor: "pointer",
-                color: "gray",
+                color: "#666",
+                "&:hover": { color: "#000" },
               }}
             />
             {selectedWork && (
               <>
-                {selectedWork.icon}
-                <Typography
-                  variant="h5"
-                  fontWeight="bold"
-                  mt={1}
-                  sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }}
+                <Box
+                  sx={{
+                    width: 60,
+                    height: 60,
+                    mx: "auto",
+                    mb: 1,
+                    borderRadius: "50%",
+                    backgroundColor: selectedWork.iconBg,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
+                  {selectedWork.icon}
+                </Box>
+                <Typography variant="h5" fontWeight="bold" color="#004d61">
                   {selectedWork.title}
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
                   mt={1}
-                  sx={{ fontSize: { xs: "0.9rem", sm: "1rem" } }}
+                  mb={2}
                 >
                   {selectedWork.description}
                 </Typography>
-                <Box sx={{ textAlign: "left", mt: 2 }}>
+                <Box sx={{ textAlign: "left", px: 1 }}>
                   {selectedWork.details.map((item, i) => (
-                    <Typography
-                      key={i}
-                      variant="body2"
-                      sx={{
-                        mb: 1,
-                        fontSize: { xs: "0.8rem", sm: "0.9rem" },
-                      }}
-                    >
+                    <Typography key={i} variant="body2" mb={1}>
                       • {item}
                     </Typography>
                   ))}
