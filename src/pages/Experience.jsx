@@ -46,7 +46,7 @@ const Experience = () => {
   }, [flippedIndex]);
 
   return (
-    <Box sx={{ py: 8, backgroundColor: "#edfcfc", textAlign: "center" }}>
+    <Box sx={{ py: 8, backgroundColor: "#FCEDFC", textAlign: "center" }}>
       <Container maxWidth="lg">
         <Typography
           variant="h4"
