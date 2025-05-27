@@ -103,16 +103,25 @@ const Home = () => {
 
               <Typography
                 variant="h4"
-                fontWeight="500"
+                fontWeight="bold"
                 sx={{
                   textAlign: "left",
-                  color: "#FFF",
+                  fontSize: { xs: "1.5rem", md: "2rem" },
+                  position: "relative",
+                  display: "inline-block",
+                  color: "transparent",
+                  WebkitTextStroke: "1px #FFF",
                   backgroundImage:
                     "linear-gradient(90deg, #00FFA3, #0075FF, #FFD700, #FF5733)",
-                  backgroundSize: "300% 100%",
+                  backgroundSize: "400% 100%",
                   WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  animation: "moveGradient 5s linear infinite",
+                  backgroundClip: "text",
+                  animation:
+                    "moveGradient 4s linear infinite, typingEffect 4s steps(30) infinite alternate",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  borderRight: "3px solid #FFF",
+                  pr: 1,
                 }}
               >
                 Frontend Developer | UI/UX Designer
@@ -205,6 +214,11 @@ const Home = () => {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+          }
+
+          @keyframes typingEffect {
+            from { width: 0; }
+            to { width: 100%; }
           }
         `}
       </style>
