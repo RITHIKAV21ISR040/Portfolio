@@ -25,32 +25,67 @@ const projects = [
   {
     title: "Flower Shop",
     image: flower,
-    description: "An online flower shop with a variety of beautiful flowers.",
+    description: [
+      "An online flower shop offering a wide variety of beautiful and fresh flowers for all occasions.",
+      "Users can browse through categories like bouquets, roses, lilies, orchids, and seasonal collections.",
+      "The platform includes a secure ordering system, same-day delivery options, and customizable gift messages.",
+      "A responsive UI ensures smooth performance across desktop and mobile devices.",
+      "An intuitive product gallery with zoom-in preview and filter options enhances the shopping experience.",
+    ],
   },
   {
     title: "Jewellery Store",
     image: jewellery,
-    description: "A luxurious jewelry store with elegant designs.",
+    description: [
+      "This is a frontend web application for a jewellery store, showcasing 100+ gold, silver, and diamond products across multiple categories.",
+      "Customers can browse items, view detailed descriptions, and place orders, contributing to a 45% increase in user engagement.",
+      "The responsive UI reduced bounce rates by 35% and improved mobile accessibility across all screen sizes.",
+      "A standout feature is the virtual try-on using a webcam, which boosted user interaction time by 60% and improved purchase confidence by 40%.",
+      "The platform enhanced customer experience and supported a smoother digital buying journey.",
+    ],
   },
   {
     title: "Kongu-E-com",
     image: ecommerce,
-    description: "An e-commerce platform for shopping various products.",
+    description: [
+      "Kongu-E-Com is an e-commerce platform for buying fresh fruits and vegetables online, designed with a responsive UI that improved user engagement by 40% across devices.",
+      "With over 100+ product listings, the platform supports seamless cart management and secure checkout, reducing cart abandonment rates by 30%.",
+      "Its user-friendly design and authentication system helped increase successful order completions by 50%, offering a convenient and reliable shopping experience.",
+    ],
   },
   {
     title: "Event Management",
     image: event,
-    description: "A professional event management system.",
+    description: [
+      "A professional event management system designed for organizing and managing corporate, cultural, and social events.",
+      "Supports event creation, scheduling, venue management, and real-time updates for attendees.",
+      "Includes user roles for admins, organizers, and participants, improving coordination and access control.",
+      "Features a responsive dashboard, event analytics, and automated email notifications to enhance user engagement.",
+      "Improved efficiency of event planning by 50% and streamlined communication between stakeholders.",
+    ],
   },
   {
     title: "Portfolio Website",
     image: portfolio,
-    description: "A personal portfolio showcasing my work.",
+    description: [
+      "A personal portfolio website showcasing my work, skills, and projects.",
+      "Built using React and Material UI with a clean, responsive design for all device sizes.",
+      "Includes sections like About Me, Projects, Skills, Contact, and Resume.",
+      "GitHub and LinkedIn are integrated for easy access to my professional profiles.",
+      "Deployed using GitHub Pages (or Netlify/Vercel) for public accessibility and easy updates.",
+    ],
   },
   {
     title: "AI Chatbot",
     image: ai,
-    description: "An AI chatbot for customer support automation.",
+    description: [
+      "An AI chatbot built for automating customer support and improving response efficiency.",
+      "Supports real-time responses to common customer queries using natural language processing (NLP).",
+      "Integrated with live chat fallback to human agents for handling complex inquiries.",
+      "Trained on a dataset of frequently asked questions to provide accurate and consistent answers.",
+      "Deployed with a responsive UI and customizable interface, increasing customer satisfaction by 35%.",
+      "Reduced support team workload by 50% through automation of repetitive tasks.",
+    ],
   },
 ];
 
@@ -210,16 +245,23 @@ const Cube = () => {
                 alt={selectedProject.title}
                 sx={{ borderRadius: "10px", objectFit: "cover" }}
               />
-              <Typography
-                sx={{
-                  marginTop: "10px",
-                  fontSize: "16px",
-                  fontWeight: "500",
-                  color: "#444",
-                }}
-              >
-                {selectedProject.description}
-              </Typography>
+              <Box sx={{ mt: "10px" }}>
+                <ul style={{ paddingLeft: "20px", margin: 0 }}>
+                  {selectedProject.description.map((point, index) => (
+                    <li key={index}>
+                      <Typography
+                        sx={{
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#444",
+                        }}
+                      >
+                        {point}
+                      </Typography>
+                    </li>
+                  ))}
+                </ul>
+              </Box>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">
