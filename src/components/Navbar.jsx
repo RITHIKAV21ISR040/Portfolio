@@ -36,8 +36,8 @@ const Navbar = () => {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/Rithika V.pdf";
-    link.download = "Rithika V.pdf";
+    link.href = "/RITHIKA-V.pdf";
+    link.download = "RITHIKA-V.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
