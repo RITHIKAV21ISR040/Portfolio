@@ -232,3 +232,4 @@ const navButtonStyle = (darkMode) => ({
 });
 
 export default Navbar;
+
