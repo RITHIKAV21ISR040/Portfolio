@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Box, useTheme, Avatar, Button } from "@mui/material";
+import { Container, Typography, Box, useTheme, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";

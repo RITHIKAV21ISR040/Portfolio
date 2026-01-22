@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { Container, Grid, TextField, Button, Box, Typography, Stack, IconButton, useTheme, Paper } from "@mui/material";
+import { Container, Grid, TextField, Button, Box, Typography, Stack, IconButton} from "@mui/material";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import rithikaImage from "../assets/Rithika.png";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Contact = () => {
-  const theme = useTheme();
   // Using specific colors from the reference image
   const bgCream = "#F9F5F0";
   const accentBlack = "#000000";

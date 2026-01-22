@@ -14,7 +14,6 @@ import {
   Chip,
   IconButton,
   useTheme,
-  Link,
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
@@ -37,7 +36,6 @@ import laptop from "../assets/laptop.png";
 import technical from "../assets/t360.png"; // Assuming t360 serves as a generic or specific image
 
 // Placeholder for Zoho if not present, or reuse one
-const placeholderImg = "https://via.placeholder.com/300x200?text=Project+Preview";
 
 const projects = [
   {
@@ -238,7 +236,7 @@ const Projects = () => {
       transition: { duration: 20, repeat: Infinity, ease: "linear" }
     },
     explode: {
-      scale: 5,
+      scale: 5, 
       opacity: 0,
       transition: { duration: 0.8 }
     }

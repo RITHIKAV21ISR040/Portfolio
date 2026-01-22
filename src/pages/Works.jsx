@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Card,
@@ -9,10 +9,9 @@ import {
   Fade,
   Backdrop,
   useTheme,
-  Chip
 } from "@mui/material";
 import { SportsSoccer, Brush, Article, Close } from "@mui/icons-material";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const worksData = [
   {

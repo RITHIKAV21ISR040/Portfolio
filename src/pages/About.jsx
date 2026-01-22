@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Box, Grid, Avatar, useTheme, useMediaQuery, Paper, LinearProgress } from "@mui/material";
+import { Container, Typography, Box, Grid, useTheme, Paper, LinearProgress } from "@mui/material";
 import { motion } from "framer-motion";
 import profilePic from "../assets/Rithika.png";
 import CodeIcon from "@mui/icons-material/Code";
@@ -52,19 +52,18 @@ const stats = [
 
 const AboutClean = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isDark = theme.palette.mode === "dark";
 
   // Animation Variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
-  };
+  // const containerVariants = {
+  //   hidden: { opacity: 0 },
+  //   visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+  // };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
-  };
+  // const itemVariants = {
+  //   hidden: { opacity: 0, y: 30 },
+  //   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
+  // };
 
   return (
     <Box sx={{
