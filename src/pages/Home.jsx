@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Typography, Box, Button, Grid } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import profilePic from "../assets/image.png";
 import About from "./About";
@@ -11,12 +12,17 @@ import Works from "./Works";
 import SendIcon from "@mui/icons-material/Send";
 
 const Home = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(160deg, #0F2027, #203A43, #2C5364)",
-        color: "#FFF",
+        background: isDark
+          ? "linear-gradient(160deg, #0F2027, #203A43, #2C5364)" // Dark Gradient
+          : "linear-gradient(160deg, #FDFBFB, #EBEDEE)", // Light Gradient
+        color: isDark ? "#FFF" : "#333",
         overflowX: "hidden",
         position: "relative",
         pb: 10,
@@ -110,7 +116,7 @@ const Home = () => {
                   position: "relative",
                   display: "inline-block",
                   color: "transparent",
-                  WebkitTextStroke: "1px #FFF",
+                  WebkitTextStroke: isDark ? "1px #FFF" : "1px #333", // Adjust Stroke
                   backgroundImage:
                     "linear-gradient(90deg, #00FFA3, #0075FF, #FFD700, #FF5733)",
                   backgroundSize: "400% 100%",
@@ -120,7 +126,7 @@ const Home = () => {
                     "moveGradient 4s linear infinite, typingEffect 4s steps(30) infinite alternate",
                   whiteSpace: "nowrap",
                   overflow: "hidden",
-                  borderRight: "3px solid #FFF",
+                  borderRight: isDark ? "3px solid #FFF" : "3px solid #333",
                   pr: 1,
                 }}
               >
@@ -129,7 +135,7 @@ const Home = () => {
 
               <Typography
                 variant="body1"
-                color="grey.300"
+                color={isDark ? "grey.300" : "text.secondary"}
                 sx={{
                   mt: 3,
                   fontSize: "1.2rem",
@@ -159,6 +165,7 @@ const Home = () => {
                     fontSize: "1rem",
                     borderRadius: "30px",
                     boxShadow: "0 0 10px rgba(0, 178, 7, 0.7)",
+                    mr: 2,
                     "&:hover": {
                       background: "linear-gradient(to right, #007B55, #00B207)",
                       transform: "scale(1.05)",
@@ -166,6 +173,29 @@ const Home = () => {
                   }}
                 >
                   Contact Me
+                </Button>
+                <Button
+                  variant="outlined"
+                  href="/RITHIKA-V.pdf"
+                  download="Rithika_Resume.pdf"
+                  sx={{
+                    borderColor: "#00B207",
+                    color: "#00B207",
+                    px: 4,
+                    py: 1.5,
+                    fontWeight: "bold",
+                    fontSize: "1rem",
+                    borderRadius: "30px",
+                    borderWidth: "2px",
+                    "&:hover": {
+                      borderColor: "#00FF0A",
+                      color: "#00FF0A",
+                      transform: "scale(1.05)",
+                      borderWidth: "2px",
+                    },
+                  }}
+                >
+                  Download Resume
                 </Button>
               </Box>
             </motion.div>
@@ -178,7 +208,7 @@ const Home = () => {
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
           >
-            <Typography sx={{ fontSize: "1.2rem", opacity: 0.6 }}>
+            <Typography sx={{ fontSize: "1.2rem", opacity: 0.6, color: isDark ? "#FFF" : "#333" }}>
               Scroll Down ↓
             </Typography>
           </motion.div>

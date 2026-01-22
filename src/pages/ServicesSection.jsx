@@ -45,16 +45,16 @@ const services = [
 
 const ServicesSection = () => {
   return (
-      <Box
-  sx={{
-    position: "relative",
-    py: 12,
-    background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)", // Updated background gradient
-    color: "#fff",
-    textAlign: "center",
-    overflow: "hidden",
-  }}
->
+    <Box
+      sx={{
+        position: "relative",
+        py: 12,
+        background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)", // Updated background gradient
+        color: "#fff",
+        textAlign: "center",
+        overflow: "hidden",
+      }}
+    >
 
       {/* Light Blur Background */}
       <Box
@@ -113,7 +113,8 @@ const ServicesSection = () => {
             <Grid item xs={12} sm={6} md={4} key={index}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 1, delay: index * 0.2 }}
               >
                 <Box
